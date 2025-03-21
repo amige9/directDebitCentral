@@ -1,0 +1,99 @@
+// // utils/logger.ts
+// import winston from 'winston';
+// import path from 'path';
+// import fs from 'fs';
+
+// // Create logs directory if it doesn't exist
+// const logDir = path.join(process.cwd(), 'logs');
+// if (!fs.existsSync(logDir)) {
+//   fs.mkdirSync(logDir, { recursive: true });
+// }
+
+
+// // Create Winston logger with console and file transports
+// const logger = winston.createLogger({
+//   level: process.env.LOG_LEVEL || 'info',
+//   format: winston.format.combine(
+//     winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+//     winston.format.printf(({ timestamp, level, message, ...meta }) => {
+//       const metaStr = Object.keys(meta).length ? JSON.stringify(meta) : '';
+//       return `[${timestamp}] [${level.toUpperCase()}]: ${message} ${metaStr}`;
+//     })
+//   ),
+//   transports: [
+//     // Console output
+//     new winston.transports.Console({
+//       format: winston.format.combine(
+//         winston.format.colorize(),
+//         winston.format.printf(({ timestamp, level, message, ...meta }) => {
+//           const metaStr = Object.keys(meta).length ? JSON.stringify(meta) : '';
+//           return `[${timestamp}] [${level.toUpperCase()}]: ${message} ${metaStr}`;
+//         })
+//       )
+//     }),
+    
+//     // File output
+//     new winston.transports.File({ 
+//       filename: path.join(logDir, 'test.log'),
+//       maxsize: 10485760, // 10MB
+//       maxFiles: 10
+//     }),
+    
+//     // Error file output
+//     new winston.transports.File({ 
+//       filename: path.join(logDir, 'error.log'),
+//       level: 'error'
+//     })
+//   ]
+// });
+
+// export default logger;
+
+// utils/logger.ts
+// import winston from 'winston';
+// import path from 'path';
+
+// // Function to create a logger for a specific test file
+// export function createLogger(testFileName: string) {
+//   const logDir = path.join(process.cwd(), 'logs');
+  
+//   // Extract the base name without extension (e.g., 'login' from 'login.spec.ts')
+//   const baseName = path.basename(testFileName, path.extname(testFileName))
+//                        .replace('.spec', '');
+  
+//   return winston.createLogger({
+//     level: process.env.LOG_LEVEL || 'info',
+//     format: winston.format.combine(
+//       winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+//       winston.format.printf(({ timestamp, level, message, ...meta }) => {
+//         const metaStr = Object.keys(meta).length ? JSON.stringify(meta) : '';
+//         return `[${timestamp}] [${level.toUpperCase()}]: ${message} ${metaStr}`;
+//       })
+//     ),
+//     transports: [
+//       // Console output
+//       new winston.transports.Console({
+//         format: winston.format.combine(
+//           winston.format.colorize(),
+//           winston.format.printf(({ timestamp, level, message, ...meta }) => {
+//             const metaStr = Object.keys(meta).length ? JSON.stringify(meta) : '';
+//             return `[${timestamp}] [${level.toUpperCase()}]: ${message} ${metaStr}`;
+//           })
+//         )
+//       }),
+      
+//       // File output - named after the test file
+//       new winston.transports.File({ 
+//         filename: path.join(logDir, `${baseName}.log`),
+//         maxsize: 10485760, // 10MB
+//         maxFiles: 10
+//       }),
+      
+//       // Error file output - still named after the test file
+//       new winston.transports.File({ 
+//         filename: path.join(logDir, `${baseName}-error.log`),
+//         level: 'error'
+//       })
+//     ]
+//   });
+// }
