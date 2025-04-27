@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "allure:clean": "rimraf ./allure-results && rimraf ./allure-report",
-    "test": "npm run allure:clean && cross-env test_env=test npx playwright test tests/login.",
+    "test": "npm run allure:clean && cross-env test_env=test npx playwright test tests/product.",
     "playwright-report": "npx playwright show-report",
     "allure:generate": "allure generate ./allure-results --clean",
     "allure:open": "allure open ./allure-report",

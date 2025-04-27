@@ -79,8 +79,8 @@ class BusinessPage {
     }
 
     /**
-     * Methid to waits for the business table to fully load and become visible
-     * @param timeout - Optional timeout in milliseconds (default: 90000)
+     * Method to waits for the business table to fully load and become visible
+     * @param timeout -  (default: 90000)
      */
     async waitForBusinessTable() {
         logger.info('Waiting for business table to load');
@@ -129,7 +129,7 @@ class BusinessPage {
             }
         }
 
-        // Assertion
+        // Assert the business name was found 
         expect(found).toBeTruthy();
     }
 
@@ -212,7 +212,7 @@ class BusinessPage {
 
      /**
      * Method to Verifies if a newly edited business appears in the business table
-     * @param bizName - The edited business name
+     * @param newBizName - The edited business name
      */
     async assertainBusinessIsEditedSuccessfully(newBizName: string) {
         logger.info(`Verifying business "${newBizName}" was edited successfully`);
