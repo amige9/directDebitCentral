@@ -1,5 +1,5 @@
 import { createLogger } from "../utils/logger/logger";
-import { expect, Locator } from "playwright/test";
+import { expect, Locator } from "@playwright/test";
 
 // Create a logger specifically for this page object
 const logger = createLogger('Helpers');
